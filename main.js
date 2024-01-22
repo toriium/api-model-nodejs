@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
-
+const {findBookByName} = require("./src/services/bookService");
 
 // simple route
 app.get("/", (req, res) => {
-    res.json({ message: "Welcome to bezkoder application." });
+
+    let name = req.query.name
+    let bookName = findBookByName(name)
+    res.json({"name": bookName});
 });
 
 // require("./app/routes/turorial.routes")(app);
